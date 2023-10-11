@@ -90,6 +90,19 @@ class PlantController extends Controller
         return response()->json("Plant Deleted");
     }
 
+    public function getPlantImage($filename)
+    {
+        $path = storage_path('app/public/images/' . $filename);
+
+        if (file_exists($path)) {
+            return response()->file($path);
+        }
+
+        return response()->json(['error' => 'Image not found'], 404);
+    }
+
+
+
     private function isImageValid($image): bool
     {
         $validExtensions = ['jpeg', 'png', 'jpg', 'gif'];

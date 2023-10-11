@@ -39,6 +39,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/category', [CategoryController::class, 'index']);
     Route::get('/plant', [PlantController::class, 'index']);
     Route::get('/freight', [FreightController::class, 'index']);
+    Route::get('/plants/images/{filename}', 'PlantController@getPlantImage');
 });
 
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
