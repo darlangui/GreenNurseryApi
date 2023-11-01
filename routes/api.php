@@ -16,7 +16,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('plant', PlantController::class);
     Route::apiResource('freight', FreightController::class);
     Route::apiResource('purshese', PursheseController::class);
-
+    Route::post('/user', [UserController::class, 'store']);
    // Rotas para admin
    Route::group(['middleware' => ['auth:api', 'admin']], function () {
        Route::get('/user', [UserController::class, 'index']);
