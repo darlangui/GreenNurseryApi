@@ -23,7 +23,7 @@ class StoreClientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required', 'string', 'min:1', 'max:100',
+            'name' => ['required', 'string', 'min:1', 'max:100'],
             'email' => ['required', 'string', 'min:5', 'max:200', Rule::unique('clients')],
             'password' => ['required', 'string', 'min:8'],
         ];
