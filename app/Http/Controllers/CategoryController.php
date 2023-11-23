@@ -6,14 +6,16 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Casts\Json;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
-    public function index(): CategoryCollection
+    public function index(): JsonResponse
     {
-        return new CategoryCollection(Category::all());
+        return (new CategoryCollection(Category::all()))->response()->setStatusCode(200);
     }
 
     public function show(Category $category): CategoryResource

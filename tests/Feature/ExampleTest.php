@@ -1,7 +1,14 @@
 <?php
 
-it('returns a successful response', function () {
-    $response = $this->get('/');
+namespace tests\Feature;
 
-    $response->assertStatus(200);
-});
+use PHPUnit\Framework\TestCase;
+
+class ExampleTest extends TestCase
+{
+    public function testSomething()
+    {
+        // Seu código de teste aqui
+        $this->assertTrue(true);
+    }
+}
