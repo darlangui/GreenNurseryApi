@@ -23,7 +23,7 @@ class StorePursheseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'client_email' => ['required', 'string', 'max:100', 'exists:clients,email'],
+            'client_email' => ['required', 'string', 'max:100', 'exists:users,email'],
             'plant_name' => ['required', 'string', 'max:200', 'exists:plants,name'],
             'freight_state' => ['required', 'string', 'exists:freights,state'],
             'status' => ['required', 'string', 'max:16'],

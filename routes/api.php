@@ -9,13 +9,12 @@ use App\Http\Controllers\FreightController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PursheseController;
 use App\Http\Controllers\UserController;
-
+use App\Models\Purshese;
 
 Route::group(['prefix' => 'v1'], function () {
    Route::apiResource('category', App\Http\Controllers\CategoryController::class);
     Route::apiResource('plant', PlantController::class);
     Route::apiResource('freight', FreightController::class);
-    Route::apiResource('purshese', PursheseController::class);
     Route::post('/user', [UserController::class, 'store']);
    // Rotas para admin
    Route::group(['middleware' => ['auth:api', 'admin']], function () {
@@ -30,8 +29,8 @@ Route::group(['prefix' => 'v1'], function () {
       Route::group(['middleware' => 'auth:api'], function () {
           Route::get('/user/{id}', [UserController::class, 'show']);
           Route::get('/purshese/{id}', [CategoryController::class, 'show']);
-          Route::get('/purshese', [CategoryController::class, 'index']);
-          Route::post('/purshese', [CategoryController::class, 'create']);
+          Route::get('/purshese', [PursheseController::class, 'index']);
+          Route::post('/purshese', [PursheseController::class, 'store']);
       });
 
          Route::get('/category/{category}', [CategoryController::class, 'show']);
