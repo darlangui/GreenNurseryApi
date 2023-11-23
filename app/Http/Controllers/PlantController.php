@@ -7,6 +7,8 @@ use App\Http\Requests\StorePlantRequest;
 use App\Http\Resources\PlantCollection;
 use App\Http\Resources\PlantResource;
 use App\Models\Plant;
+use Illuminate\Database\Eloquent\Casts\Json;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -14,9 +16,9 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class PlantController extends Controller
 {
-    public function index(): PlantCollection
+    public function index(): JsonResponse
     {
-        return new PlantCollection(Plant::all());
+        return (new PlantCollection(Plant::all()))->response()->setStatusCode(200);
     }
 
     public function show(Plant $plant): PlantResource

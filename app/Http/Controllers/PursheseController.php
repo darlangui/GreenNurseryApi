@@ -8,12 +8,14 @@ use App\Http\Resources\PursheseResource;
 use App\Models\Freight;
 use App\Models\Plant;
 use App\Models\Purshese;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class PursheseController extends Controller
 {
-    public function index(){
-        return new PursheseCollection(Purshese::all());
+    public function index(): JsonResponse
+    {
+        return (new PursheseCollection(Purshese::all()))->response()->setStatusCode(200);
     }
 
     public function show(Purshese $purshese){

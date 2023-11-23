@@ -6,13 +6,14 @@ use App\Http\Requests\StoreFreightRequest;
 use App\Http\Resources\FreightCollection;
 use App\Http\Resources\FreightResource;
 use App\Models\Freight;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class FreightController extends Controller
 {
-    public function index(): FreightCollection
+    public function index(): JsonResponse
     {
-        return new FreightCollection(Freight::all());
+        return (new FreightCollection(Freight::all()))->response()->setStatusCode(200);
     }
 
     public function show(Freight $freight): FreightResource
